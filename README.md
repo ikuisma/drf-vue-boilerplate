@@ -1,4 +1,4 @@
-# Django/DRF/Vue/Webpack/SAML Boiler Plate
+# Django/DRF/Vue/Webpack/SAML Boilerplate
 
 Boilerplate code for a project with:
 - Vue -frontend served by Django
