@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 
-from .views import IndexTemplateView
+from .views import IndexTemplateView, saml_metadata_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('drfapi.api.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     path('api-auth/', include('rest_framework.urls')),
+    path('', include('social_django.urls', namespace='social')),
+    path('metadata', saml_metadata_view),
     re_path(r"^.*$", IndexTemplateView.as_view(), name='entry-point')
 ]

@@ -38,11 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_extensions',
+
     'webpack_loader',
 
     'social_django',
 
     'rest_framework',
+
+    'drfapi',
 ]
 
 MIDDLEWARE = [
@@ -136,7 +140,46 @@ WEBPACK_LOADER = {
     }
 }
 
+def read_cert_key_from_file(filepath):
+    with open(filepath, 'r') as myfile:
+        data = myfile.read()
+        return data
+
+PUBLIC_CERT_PATH = os.path.join(BASE_DIR, 'certs', 'cert.pem')
+PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'certs', 'key.pem')
+
+SOCIAL_AUTH_SAML_SP_ENTITY_ID = 'saml-poc'
+SOCIAL_AUTH_SAML_SP_PUBLIC_CERT = read_cert_key_from_file(PUBLIC_CERT_PATH)
+SOCIAL_AUTH_SAML_SP_PRIVATE_KEY = read_cert_key_from_file(PRIVATE_KEY_PATH)
+SOCIAL_AUTH_SAML_ORG_INFO = {
+    "en-US": {
+        "name": "example",
+        "displayname": "Example Inc.",
+        "url": "http://example.com",
+    }
+}
+SOCIAL_AUTH_SAML_TECHNICAL_CONTACT = {
+    "givenName": "example",
+    "emailAddress": "user@example.com"
+}
+SOCIAL_AUTH_SAML_SUPPORT_CONTACT = {
+    "givenName": "example",
+    "emailAddress": "user@example.com"
+}
+SOCIAL_AUTH_SAML_ENABLED_IDPS = {
+    "simplesamlidp": {
+        "x509cert": "",
+        "entity_id": 'http://localhost:8080/simplesaml/saml2/idp/metadata.php',
+        "url": "http://localhost:8080/simplesaml/saml2/idp/SSOService.php",
+        # Map attributes from the SAML IDP model to the auth model
+        "attr_user_permanent_id": "uid",
+        "attr_username": "email",
+        "attr_email": "email",
+    }
+}
+
 AUTHENTICATION_BACKENDS = (
+    'social_core.backends.saml.SAMLAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
 

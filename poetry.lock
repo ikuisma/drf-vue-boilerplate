@@ -121,6 +121,17 @@ python-versions = "*"
 version = "1.9.0"
 
 [[package]]
+category = "dev"
+description = "Extensions for Django"
+name = "django-extensions"
+optional = false
+python-versions = "*"
+version = "2.2.9"
+
+[package.dependencies]
+six = ">=1.2"
+
+[[package]]
 category = "main"
 description = "Transparently use webpack with django"
 name = "django-webpack-loader"
@@ -484,7 +495,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "5abda92d18459f2b62fb33f706eda959b45870591c38ccffb8e4883466a995da"
+content-hash = "f50a83245b2eea52f08ea3bd74a055e8582de065dbbeb41b763961f071c6fc4d"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -576,6 +587,10 @@ django = [
 django-crispy-forms = [
     {file = "django-crispy-forms-1.9.0.tar.gz", hash = "sha256:67e73ac863d3159500029fbbcdcb788f287a3fd357becebc1a0b51f73896dce3"},
     {file = "django_crispy_forms-1.9.0-py2.py3-none-any.whl", hash = "sha256:50032184708ce351e3c9f0008ac35d659d9d5973fa2db218066f2e0a76eb41d9"},
+]
+django-extensions = [
+    {file = "django-extensions-2.2.9.tar.gz", hash = "sha256:2f81b618ba4d1b0e58603e25012e5c74f88a4b706e0022a3b21f24f0322a6ce6"},
+    {file = "django_extensions-2.2.9-py2.py3-none-any.whl", hash = "sha256:b19182d101a441fe001c5753553a901e2ef3ff60e8fbbe38881eb4a61fdd17c4"},
 ]
 django-webpack-loader = [
     {file = "django-webpack-loader-0.7.0.tar.gz", hash = "sha256:7a3c88201aa54481f9399465615cbe7b9aece8081496a6d0287b7cb8e232f447"},
