@@ -107,7 +107,10 @@ In a separate shell `cd` into the frontend repository `vue-frontend` and run the
 npm run serve
 ```
 
-You should now be able to access the site at [http://localhost:8000](http://localhost:8000).
+You should now be able to access the site at [http://localhost:8000](http://localhost:8000). You can login to the application by either by using application's login form with the superuser credentials you created earlier, or by using the SAML IDP which comes with the following pre-made users:
+
+- username: `user1` password: `user1pass`
+- username: `user2` password: `user2pass`
 
 ## Running the tests
 
