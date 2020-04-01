@@ -27,7 +27,21 @@ Optional but recommended:
 
 A step by step series of examples that tell you how to get a development env running.
 
-First install dependencies for the backend by running the following command from the project root:
+Some of the Python libraries used by the project have their own prerequisite installation steps. Refer to the project homepage for more detailed installation instructions for other systems.
+
+#### Install [python-xmlsec](https://github.com/mehcode/python-xmlsec) dependencies
+
+macOS Homebrew
+```
+brew install libxml2 libxmlsec1 pkg-config
+```
+Linux Debian
+```
+apt-get install libxml2-dev libxmlsec1-dev libxmlsec1-openssl
+```
+#### Install project
+
+Next install dependencies for the backend by running the following command from the project root:
 
 ```
 poetry install
