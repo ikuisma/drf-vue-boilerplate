@@ -14,9 +14,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 The recommended installation method requires the following:
 
-- [Pyenv](https://github.com/pyenv/pyenv) –  version management for Python
-- [Poetry](https://python-poetry.org/) – package and dependency management for Python
+- [Pyenv](https://github.com/pyenv/pyenv) –  version management for Python.
+- [Poetry](https://python-poetry.org/) – package and dependency management for Python.
 - [Node + NPM](https://nodejs.org/en/) – runtime for frontend.
+- [Docker](https://docs.docker.com/get-docker/) – container platform for runnign external dependencies.
 
 Optional but recommended:
 
@@ -41,7 +42,30 @@ apt-get install libxml2-dev libxmlsec1-dev libxmlsec1-openssl
 ```
 #### Install project
 
-Next install dependencies for the backend by running the following command from the project root:
+Next use the following OpenSSL command to generate keys for the SAML Service Provider into the certs directory:
+```
+openssl req -x509 -newkey rsa:4096 -keyout certs/key.pem -out certs/cert.pem -nodes -days 900
+```
+
+In a separate terminal execute the following command at the root of this repository to spin up the containerized SAML IDP:
+
+```
+docker-compose up
+```
+
+Once the SAML IDP is running visit [http://localhost:8080/simplesaml/saml2/idp/metadata.php](http://localhost:8080/simplesaml/saml2/idp/metadata.php) and copy the `X509Certificate` key from the XML returned by the URL. Open `settings.py` and paste the key into the following object:
+
+```
+SOCIAL_AUTH_SAML_ENABLED_IDPS = {
+    "simplesamlidp": {
+        "x509cert": "", <= Paste copied X509 cert here
+        ...
+    }
+}
+```
+
+
+Next, install dependencies for the backend by running the following command from the project root:
 
 ```
 poetry install
