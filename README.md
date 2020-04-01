@@ -45,10 +45,16 @@ Enter the Python virtual environment shell from the project root:
 poetry shell
 ```
 
-In the venv shell navigate to the backend project root and execute the following command to run the database migration:
+In the venv shell execute the following command to run the database migrations:
 
 ```
 python manage.py migrate
+```
+
+Then run the following command to create a new superuser for yourself:
+
+```
+python manage.py createsuperuser
 ```
 
 And then run the following command to start the development server:
@@ -57,12 +63,13 @@ And then run the following command to start the development server:
 python manage.py runserver
 ```
 
-In a separate shell `cd` into the frontend repository `vue-frontend` and run the following command 
+In a separate shell `cd` into the frontend repository `vue-frontend` and run the following command:
 
 ```
 npm run serve
 ```
 
+You should now be able to access the site at [http://localhost:8000](http://localhost:8000).
 
 ## Running the tests
 
