@@ -17,7 +17,7 @@ The recommended installation method requires the following:
 - [Pyenv](https://github.com/pyenv/pyenv) –  version management for Python.
 - [Poetry](https://python-poetry.org/) – package and dependency management for Python.
 - [Node + NPM](https://nodejs.org/en/) – runtime for frontend.
-- [Docker](https://docs.docker.com/get-docker/) – container platform for runnign external dependencies.
+- [Docker](https://docs.docker.com/get-docker/) – container platform for running external dependencies.
 
 Optional but recommended:
 
