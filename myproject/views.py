@@ -8,6 +8,11 @@ from social_django.utils import load_strategy, load_backend
 class IndexTemplateView(LoginRequiredMixin, TemplateView):
     template_name='index.html'
 
+
+class LoginErrorView(TemplateView):
+    template_name='registration/login-error.html'
+
+
 def saml_metadata_view(request):
     complete_url = reverse('social:complete', args=("saml", ))
     saml_backend = load_backend(

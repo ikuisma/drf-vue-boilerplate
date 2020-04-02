@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include, re_path
 
-from .views import IndexTemplateView, saml_metadata_view
+from .views import IndexTemplateView, LoginErrorView, saml_metadata_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('drfapi.api.urls')),
+    path('accounts/login-error', LoginErrorView.as_view(), name='login-error'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('', include('social_django.urls', namespace='social')),
