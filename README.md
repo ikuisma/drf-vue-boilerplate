@@ -112,6 +112,8 @@ You should now be able to access the site at [http://localhost:8000](http://loca
 - username: `user1` password: `user1pass`
 - username: `user2` password: `user2pass`
 
+You can add/edit/remove the users in the SAML IDP by editing the `saml_users.php` file.
+
 ## Running the tests
 
 TBA
