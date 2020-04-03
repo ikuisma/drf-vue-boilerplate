@@ -25,9 +25,6 @@ SECRET_KEY = '%q)*vnm21f6#dc8h%gwe6%8bp85y7$+!5mhxf+r#(jgl$kst0g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -58,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -73,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -135,7 +134,6 @@ AUTH_USER_MODEL = "users.CustomUser"
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-LOGIN_ERROR_URL = '/accounts/login-error'
 
 WEBPACK_LOADER = {
     'DEFAULT': {
@@ -152,6 +150,7 @@ def read_cert_key_from_file(filepath):
 PUBLIC_CERT_PATH = os.path.join(BASE_DIR, 'certs', 'cert.pem')
 PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'certs', 'key.pem')
 
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_SAML_SP_ENTITY_ID = 'saml-poc'
 SOCIAL_AUTH_SAML_SP_PUBLIC_CERT = read_cert_key_from_file(PUBLIC_CERT_PATH)
 SOCIAL_AUTH_SAML_SP_PRIVATE_KEY = read_cert_key_from_file(PRIVATE_KEY_PATH)
@@ -215,6 +214,9 @@ SOCIAL_AUTH_PIPELINE = (
 
     # Uncomment to create a user account if we haven't found one yet.
     # 'social_core.pipeline.user.create_user',
+
+    # Custom pipeline to redirect unauthorized users
+    'users.pipeline.redirect_unauthorized_user',
 
     # Create the record that associates the social account with the user.
     'social_core.pipeline.social_auth.associate_user',

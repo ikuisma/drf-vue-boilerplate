@@ -9,8 +9,8 @@ class IndexTemplateView(LoginRequiredMixin, TemplateView):
     template_name='index.html'
 
 
-class LoginErrorView(TemplateView):
-    template_name='registration/login-error.html'
+class AccessDeniedView(TemplateView):
+    template_name='registration/access-denied.html'
 
 
 def saml_metadata_view(request):
